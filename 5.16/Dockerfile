@@ -1,4 +1,4 @@
-FROM openshift/base-centos7
+FROM core/builder-base-centos7
 
 # This image provides a Perl 5.16 environment you can use to run your Perl applications.
 MAINTAINER SoftwareCollections.org <sclorg@redhat.com>

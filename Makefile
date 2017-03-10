@@ -1,5 +1,5 @@
 # Variables are documented in hack/build.sh.
-BASE_IMAGE_NAME = perl
+BASE_IMAGE_NAME = builder-perl
 VERSIONS = 5.20 5.24
 OPENSHIFT_NAMESPACES = 5.16
 
