@@ -79,3 +79,4 @@ fi
 
 # Fix source directory permissions
 fix-permissions ./
+copy-stiscripts /opt/app-root/scripts/
