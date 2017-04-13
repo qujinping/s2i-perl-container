@@ -51,10 +51,7 @@ function squash {
   #        compatibility issues
   easy_install -q --user docker_py==1.7.2 docker-squash==1.0.1
   base=$(awk '/^FROM/{print $2}' $1)
-  old_imageid=$(docker inspect --format='{{.Id}}' ${IMAGE_NAME})
-  ${HOME}/.local/bin/docker-squash -f $base -t ${IMAGE_NAME} ${IMAGE_NAME}
-  echo "-> Removing obsoleted image ..."
-  docker rmi $old_imageid
+  ${HOME}/.local/bin/docker-squash -f $base ${IMAGE_NAME}
 }
 
 # Versions are stored in subdirectories. You can specify VERSION variable
@@ -64,19 +61,8 @@ dirs=${VERSION:-$VERSIONS}
 for dir in ${dirs}; do
   case " $OPENSHIFT_NAMESPACES " in
     *\ ${dir}\ *)
-      NAMESPACE="mid/"
       ;;
     *)
-      if [ "${OS}" == "centos7" ]; then
-        NAMESPACE="mid/"
-      else
-        # we don't test rhel versions of SCL owned images
-        if [[ "${SKIP_RHEL_SCL}" == "1" ]]; then
-          echo "Skipping rhel scl image ${BASE_IMAGE_NAME}-${dir//./}-{$OS}"
-          continue
-        fi
-        NAMESPACE="mid/"
-      fi
   esac
 
   IMAGE_NAME="${NAMESPACE}${BASE_IMAGE_NAME}-${dir//./}-${OS}"

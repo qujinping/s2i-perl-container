@@ -15,6 +15,7 @@ script_env = \
 	OS=$(OS)                                        \
 	VERSION="$(VERSION)"                            \
 	BASE_IMAGE_NAME=$(BASE_IMAGE_NAME)              \
+	NAMESPACE="$(NAMESPACE)"                        \
 	OPENSHIFT_NAMESPACES="$(OPENSHIFT_NAMESPACES)"
 
 .PHONY: build
